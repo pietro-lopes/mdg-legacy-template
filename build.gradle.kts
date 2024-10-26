@@ -10,22 +10,22 @@ plugins {
     id("net.neoforged.moddev.legacy") version "2.0.61-beta-pr-118-legacy"
 }
 
-val minecraftVersion: String by project
-val minecraftVersionRange: String by project
-val forgeVersion: String by project
-val forgeVersionRange: String by project
-val loaderVersionRange: String by project
-val parchmentMcVersion: String by project
-val parchmentVersion: String by project
-val modId: String by project
-val modName: String by project
-val modLicense: String by project
-val modVersion: String by project
-val modGroupId: String by project
-val modAuthors: String by project
-val modDescription: String by project
-val mixins: String by project
-val mixinRefMap: String by project
+val minecraftVersion: String by extra
+val minecraftVersionRange: String by extra
+val forgeVersion: String by extra
+val forgeVersionRange: String by extra
+val loaderVersionRange: String by extra
+val parchmentMcVersion: String by extra
+val parchmentVersion: String by extra
+val modId: String by extra
+val modName: String by extra
+val modLicense: String by extra
+val modVersion: String by extra
+val modGroupId: String by extra
+val modAuthors: String by extra
+val modDescription: String by extra
+val mixins: String by extra
+val mixinRefMap: String by extra
 
 repositories {
     mavenCentral()
@@ -218,6 +218,22 @@ dependencies {
     // Enable REI Hacks if needed.
     //    modReiRuntimeOnly("curse.maven:roughly-enough-items-hacks-521393:4837449")
 
+    // Jarjar example
+    val jnoiseVersion = "4.1.0"
+    val jnoiseProjects = arrayListOf(
+        "core",
+        "generators",
+        "modifiers",
+        "modules",
+        "pipeline",
+        "transformers"
+    )
+    // Main project that will import all other projects to be used in compile time
+    implementation("de.articdive:jnoise-pipeline:$jnoiseVersion")
+    for (project in jnoiseProjects) {
+        // each individual project to add to jarjar and runtime
+        additionalRuntimeClasspath(jarJar("de.articdive:jnoise-$project:$jnoiseVersion")!!)
+    }
 }
 
 tasks {

@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(Minecraft.class)
 public interface SomeAccessorAndInvokers {
     @Accessor("fps")
-    int getFps();
+    int example$getFps();
 
     @Invoker("getFramerateLimit")
-    int getFramerateLimit();
+    int example$getFramerateLimit();
 }
