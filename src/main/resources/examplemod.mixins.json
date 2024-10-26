@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.example.examplemod.mixin.core",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "plugin": "com.example.examplemod.mixin.core.plugin.ExampleModMixinPlugin",
+  "refmap": "${mixin_refmap}",
+  "client": [
+    "accessor.SomeAccessorAndInvokers",
+    "main.MinecraftMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
